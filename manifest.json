@@ -1,0 +1,10 @@
+{
+  "name": "Para Mi Amor",
+  "short_name": "Mi Amor ❤️",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff5f8",
+  "theme_color": "#ff4f81",
+  "description": "Un rincón especial hecho con amor.",
+  "icons": []
+}

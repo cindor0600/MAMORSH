@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ff4f81">
+  <meta name="description" content="Un pequeño lugar hecho con amor.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>TERRRIBOL</title>
+</head>
+<body>
+  <div id="hearts" aria-hidden="true"></div>
+
+  <main class="app">
+    <section id="home" class="screen active">
+      <button class="pet-corner pet-left" onclick="petSound('pug')" aria-label="Pug">
+        <img src="assets/pug.png" alt="Pug" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="pet-fallback">🐶</span>
+      </button>
+      <button class="pet-corner pet-right" onclick="petSound('salchicha')" aria-label="Salchicha">
+        <img src="assets/salchicha.png" alt="Salchicha" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="pet-fallback">🐕</span>
+      </button>
+      <div class="hero-card">
+        <div class="floating-heart">♥</div>
+        <p class="eyebrow">PARA VOS</p>
+        <h1>FELIZ CUMPLE MAMORSH ❤️</h1>
+        <p class="hero-text">Preparé este pequeño lugar para vos.<br>Hay juegos, recuerdos y algunas sorpresas.</p>
+        <button class="primary-btn" onclick="showScreen('games')">Entrar 💕</button>
+      </div>
+      <p class="tiny">Hecho especialmente para vos ✨</p>
+    </section>
+
+    <section id="games" class="screen">
+      <div class="topbar">
+        <button class="back-btn" onclick="showScreen('home')">←</button>
+        <div>
+          <p class="eyebrow">NUESTRO RINCÓN</p>
+          <h2>Elegí un juego 🎮</h2>
+        </div>
+      </div>
+
+      <div class="game-grid">
+        <button class="game-card" onclick="showScreen('quiz')">
+          <span class="game-icon">💕</span>
+          <strong>¿Cuánto me conocés?(DIFICIL)</strong>
+          <small>Contestá preguntas sobre mi y pone a prueba tu amor</small>
+        </button>
+        <button class="game-card" onclick="showScreen('memory')">
+          <span class="game-icon">🧠</span>
+          <strong>Memoria</strong>
+          <small>Encontrá las parejas</small>
+        </button>
+        <button class="game-card" onclick="showScreen('loveletters')">
+          <span class="game-icon">💌</span>
+          <strong>Cartitas</strong>
+          <small>Abrí una sorpresa</small>
+        </button>
+        <button class="game-card" onclick="showScreen('roulette')">
+          <span class="game-icon">🎡</span>
+          <strong>Ruleta de citas</strong>
+          <small>¿Qué hacemos el proximo 16?</small>
+        </button>
+        <button class="game-card" onclick="showScreen('story')">
+          <span class="game-icon">🧩</span>
+          <strong>Arma el rompecabezas</strong>
+          <small>divertite encontrando la forma final</small>
+        </button>
+        <button class="game-card" onclick="showScreen('final')">
+          <span class="game-icon">🎮</span>
+          <strong>Minijuego final</strong>
+          <small>Seras capaz de ganarlo?</small>
+        </button>
+      </div>
+    </section>
+
+    <section id="quiz" class="screen">
+      <div class="topbar">
+        <button class="back-btn" onclick="showScreen('games')">←</button>
+        <div><p class="eyebrow">JUEGO 01</p><h2>¿Cuánto me conocés? 💕</h2></div>
+      </div>
+      <div class="game-panel">
+        <div class="progress"><span id="quizProgress"></span></div>
+        <p id="quizCounter" class="counter"></p>
+        <h3 id="question"></h3>
+        <div id="answers" class="answers"></div>
+        <div id="quizResult" class="result hidden"></div>
+      </div>
+    </section>
+
+    <section id="memory" class="screen">
+      <div class="topbar">
+        <button class="back-btn" onclick="showScreen('games')">←</button>
+        <div><p class="eyebrow">JUEGO 02</p><h2>Memoria 🧠</h2></div>
+      </div>
+      <div class="game-panel">
+        <p class="center">Encontrá todas las parejas chiniisss</p>
+        <div id="memoryBoard" class="memory-board"></div>
+        <button class="secondary-btn" onclick="startMemory()">Reiniciar</button>
+        <p id="memoryStatus" class="center"></p>
+        <p class="photo-note"><strong></strong>  <strong></strong>.</p>
+      </div>
+    </section>
+
+    <section id="loveletters" class="screen">
+      <div class="topbar">
+        <button class="back-btn" onclick="showScreen('games')">←</button>
+        <div><p class="eyebrow">JUEGO 03</p><h2>Cartitas 💌</h2></div>
+      </div>
+      <div class="letters-grid">
+        <button class="letter" onclick="openLetter(this,'Porque me hacés sonreír incluso en los días difíciles. ❤️')">💌<small>Para abrir</small></button>
+        <button class="letter" onclick="openLetter(this,'Si pudiera elegir de nuevo, volvería a elegirte. Una y mil veces. 🥹')">💌<small>Para abrir</small></button>
+        <button class="letter" onclick="openLetter(this,'Mi lugar favorito no es un lugar: es donde estoy con vos. 🫶')">💌<small>Para abrir</small></button>
+        <button class="letter" onclick="openLetter(this,'Gracias por formar parte de mi vida y hacerla mucho más linda. 🌷')">💌<small>Para abrir</small></button>
+      </div>
+      <div id="letterMessage" class="letter-message hidden"></div>
+    </section>
+
+    <section id="roulette" class="screen">
+      <div class="topbar">
+        <button class="back-btn" onclick="showScreen('games')">←</button>
+        <div><p class="eyebrow">JUEGO 04</p><h2>La ruleta de los 16 🎡</h2></div>
+      </div>
+      <div class="game-panel roulette-panel">
+        <div id="wheel">❤️</div>
+        <p id="dateResult" class="date-result">Girala y descubrí que te toca.(enfrente de tomi)</p>
+        <button class="primary-btn" onclick="spinRoulette()">Girar 💕</button>
+      </div>
+    </section>
+
+    <section id="story" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="showScreen('games')">←</button>
+    <div><p class="eyebrow">JUEGO 05</p><h2>Rompecabezas 🧩</h2></div>
+  </div>
+  <div class="game-panel puzzle-panel">
+    <p class="center">Armá la <strong>foto de rompecabezas</strong> (16 piezas) para descubrir la imagen.</p>
+    <div id="puzzleBoard" class="puzzle-board puzzle-board-square"></div>
+    <p id="puzzleStatus" class="center">Tocá dos piezas para intercambiarlas.</p>
+    <button class="secondary-btn" onclick="startPuzzle()">Reiniciar</button>
+    <p class="photo-note"><strong></strong></p>
+  </div>
+</section>
+
+    <section id="final" class="screen">
+      <div class="topbar">
+        <button class="back-btn" onclick="showScreen('games')">←</button>
+        <div><p class="eyebrow">JUEGO 06</p><h2>Las aventuras del manyi 🐱</h2></div>
+      </div>
+      <div class="game-panel">
+        <p class="center">Saltá los obstáculos y ayudá a mile a llegar hasta el manyi. 🧡</p>
+        <canvas id="runner" width="560" height="260" aria-label="Minijuego 2D"></canvas>
+        <div class="runner-controls">
+          <button class="secondary-btn" onclick="jumpRunner()">⬆️ Saltar</button>
+          <button class="secondary-btn" onclick="startRunner()">🔄 Reiniciar</button>
+        </div>
+        <p id="runnerStatus" class="center">Usá el botón o la barra espaciadora para saltar.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <button onclick="showScreen('home')">🏠<span>Inicio</span></button>
+    <button onclick="showScreen('games')">🎮<span>Juegos</span></button>
+    
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
